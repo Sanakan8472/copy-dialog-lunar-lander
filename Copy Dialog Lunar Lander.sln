@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32802.440
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Copy Dialog Lunar Lander", "Copy Dialog Lunar Lander.csproj", "{C244F3B7-8B79-48FD-AD76-CA5583811D8D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Box2D.NetStandard", "box2d-netstandard\src\box2dx\Box2D.NetStandard\Box2D.NetStandard.csproj", "{8A1FCE19-725D-4DF7-83A4-079752BE2E9C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C244F3B7-8B79-48FD-AD76-CA5583811D8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C244F3B7-8B79-48FD-AD76-CA5583811D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C244F3B7-8B79-48FD-AD76-CA5583811D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C244F3B7-8B79-48FD-AD76-CA5583811D8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A1FCE19-725D-4DF7-83A4-079752BE2E9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A1FCE19-725D-4DF7-83A4-079752BE2E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A1FCE19-725D-4DF7-83A4-079752BE2E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A1FCE19-725D-4DF7-83A4-079752BE2E9C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB63D6F4-F9E2-477D-93FD-4AD2EE3A0E26}
+	EndGlobalSection
+EndGlobal
