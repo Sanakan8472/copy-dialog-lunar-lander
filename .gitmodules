@@ -1,0 +1,3 @@
+[submodule "box2d-netstandard"]
+	path = box2d-netstandard
+	url = https://github.com/Sanakan8472/box2d-netstandard

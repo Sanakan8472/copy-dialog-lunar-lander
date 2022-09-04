@@ -1,0 +1,13 @@
+{
+  "Registrations": [
+    {
+      "component": {
+        "type": "git",
+        "git": {
+          "repositoryUrl": "https://github.com/codingben/box2d-netstandard",
+          "commitHash": "113db001379a1d485125fd932a9918304cfadb75"
+        }
+      }
+    }
+  ]
+}
