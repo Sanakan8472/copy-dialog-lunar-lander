@@ -29,7 +29,7 @@ Unlike the lunar langer from the olden times, this one is not limited to visitin
 ![DesertWorld](Docs/DesertWorld.png)
 * **Frozen ice planet**: You can visit this world by enabling *high contrast mode* in Windows.\
 ![FrozenWorld](Docs/FrozenWorld.png)
-* **Nuclear wasteland**: By combining *pause* and *high contrast mode* from above you can unlock this \nightmarish world.
+* **Nuclear wasteland**: By combining *pause* and *high contrast mode* from above you can unlock this nightmarish world.\
 ![NuclearWastelandWorld](Docs/NuclearWastelandWorld.png)
 
 ## Create you own worlds (with the OS built-in level editor)!
@@ -42,6 +42,8 @@ Here some examples of what worlds await you:
 ![CustomLevel2](Docs/CustomLevel2.png)
 
 # Building
+
+Needs at least Windows 10 for handling dpi scaling correctly. Only testd on Windows 10 21H2 so far. Windows 11 is untested.
 
 * `git clone` into some folder and go there.
 * `git submodule init`
