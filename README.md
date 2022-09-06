@@ -9,7 +9,7 @@ Now there is finally a solution to this problem! Play lunar lander in these invi
 ![CopyDialogLunarLander](Docs/CopyDialogLunarLander.gif)
 
 ## Multiple difficulty settings!
-There are multiple difficulty settings to chose from:
+There are multiple difficulty settings to choose from:
 * **Easy**: Just copy a huge file from a local SSD to another local SSD.\
 ![Easy](Docs/Easy.png)
 * **Medium**: Copy a big file to a crappy USB 2.0 stick.\
@@ -19,11 +19,11 @@ There are multiple difficulty settings to chose from:
 
 ## Infinite levels, infinite replayability!
 There are infinite levels, thanks to general unreliability of storage devices, the internet and VPNs.
-Even playing the same 'level' twice might results in totally different landscapes, infinite replayability is guaranteed!
+Even playing the same 'level' twice might result in totally different landscapes, infinite replayability is guaranteed!
 
 ## Visit many exciting worlds!
 Unlike the lunar langer from the olden times, this one is not limited to visiting just the moon, here are some other worlds you can visit:
-* **Lush green forrest**: The default world you visit. Just copy any file to reach this world.\
+* **Lush green forest**: The default world you visit. Just copy any file to reach this world.\
 ![GreenWorld](Docs/GreenWorld.png)
 * **Scorching hot desert**: Just press *pause* on your copy operation to visit this world.\
 ![DesertWorld](Docs/DesertWorld.png)
@@ -32,8 +32,8 @@ Unlike the lunar langer from the olden times, this one is not limited to visitin
 * **Nuclear wasteland**: By combining *pause* and *high contrast mode* from above you can unlock this nightmarish world.\
 ![NuclearWastelandWorld](Docs/NuclearWastelandWorld.png)
 
-## Create you own worlds (with the OS built-in level editor)!
-If the above worlds are not your cup of tea, you can create your own! Simply enable *high contrast mode* and change the *Hyperlinks* color for the *paused* world and the *Selected Text* color for the normal world. That's 16.7 million world that you can visit!
+## Create your own worlds (with the OS built-in level editor)!
+If the above worlds are not your cup of tea, you can create your own! Simply enable *high contrast mode* and change the *Hyperlinks* color for the *paused* world and the *Selected Text* color for the normal world. That's 16.7 million worlds that you can visit!
 
 ![LevelEditor](Docs/LevelEditor.png)\
 Here some examples of what worlds await you:
@@ -43,7 +43,7 @@ Here some examples of what worlds await you:
 
 # Building
 
-Needs at least Windows 10 for handling dpi scaling correctly. Only testd on Windows 10 21H2 so far. Windows 11 is untested.
+Needs at least Windows 10 for handling dpi scaling correctly. Only tested on Windows 10 21H2 so far. Windows 11 is untested.
 
 * `git clone` into some folder and go there.
 * `git submodule init`
@@ -53,7 +53,7 @@ Needs at least Windows 10 for handling dpi scaling correctly. Only testd on Wind
 
 # Gameplay
 
-Once running, a tray icon is added that can be used to exit the app, change the difficulty in case your moon lander explodes even on a flat terrain.
+Once running, a tray icon is added that can be used to exit the app, change the difficulty in case your moon lander explodes even on flat terrain.
 * **Hard** means you need to be below 5m/s when touching the ground.
 * **Easy** eases the limit to below 10m/s.
 
@@ -76,4 +76,4 @@ If you have too much time on your hands, consider contributing to [box2d-standar
 # Known Issues
 
 * Sometimes clicking on the **Click here to play** message does not work and the game overlay gets unfocused. Not sure why that is. Just click twice again until it works.
-* Dragging from one monitor to another with a different DPI causes the overlay to spasm out. Just drag the copy dialog a bit further and it will fix itself. Not sure why that happens but I already wasted too much time on this joke so I left it as is but hey, [constributions](#contributing) are always welcome!
+* Dragging from one monitor to another with a different DPI causes the overlay to spasm out. Just drag the copy dialog a bit further and it will fix itself. Not sure why that happens but I already wasted too much time on this joke so I left it as is but hey, [contributions](#contributing) are always welcome!
