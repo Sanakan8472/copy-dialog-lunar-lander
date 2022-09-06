@@ -22,7 +22,7 @@ There are infinite levels, thanks to general unreliability of storage devices, t
 Even playing the same 'level' twice might result in totally different landscapes, infinite replayability is guaranteed!
 
 ## Visit many exciting worlds!
-Unlike the lunar langer from the olden times, this one is not limited to visiting just the moon, here are some other worlds you can visit:
+Unlike the lunar lander from the olden times, this one is not limited to visiting just the moon, here are some other worlds you can visit:
 * **Lush green forest**: The default world you visit. Just copy any file to reach this world.\
 ![GreenWorld](Docs/GreenWorld.png)
 * **Scorching hot desert**: Just press *pause* on your copy operation to visit this world.\
