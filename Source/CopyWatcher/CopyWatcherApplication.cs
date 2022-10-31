@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows.Automation;
 using System.ComponentModel;
 using System.Reflection;
+using Microsoft.Win32;
 
 namespace CopyDialogLunarLander
 {
@@ -43,6 +44,10 @@ namespace CopyDialogLunarLander
         private List<Game> _games = new List<Game>();
         private Type _currentGame = null;
         private System.Windows.Forms.ToolStripMenuItem _gameOptions = null;
+        private System.Windows.Forms.ToolStripMenuItem _autostart = null;
+
+        const string _autostartRegKey = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+        const string _autostartName = "CopyDialogLunarLander";
 
         public CopyWatcherApplication()
         {
@@ -81,6 +86,9 @@ namespace CopyDialogLunarLander
                 }
             }
             _gameOptions = (System.Windows.Forms.ToolStripMenuItem)_notifyIcon.ContextMenuStrip.Items.Add("Game Options");
+            _autostart = (System.Windows.Forms.ToolStripMenuItem)_notifyIcon.ContextMenuStrip.Items.Add("Start with Windows");
+            _autostart.Click += (s, e) => ToggleAutostart();
+            _autostart.Checked = IsAutostartEnabled();
             _notifyIcon.ContextMenuStrip.Items.Add("-");
             _notifyIcon.ContextMenuStrip.Items.Add("Exit Lunar Lander").Click += (s, e) => ExitApplication();
 
@@ -113,7 +121,6 @@ namespace CopyDialogLunarLander
             {
                 System.Diagnostics.Debug.WriteLine($"Exception: {ex}");
             }
-           
         }
 
         private void UpdateGameOptions()
@@ -123,8 +130,49 @@ namespace CopyDialogLunarLander
             MethodInfo info = _currentGame.GetMethod("FillOptions", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
 
             object value = info.Invoke(null, new object[] { _gameOptions });
+        }
 
-            
+        private bool IsAutostartEnabled()
+        {
+            try
+            {
+                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(_autostartRegKey, false);
+                var value = registryKey.GetValue(_autostartName);
+                string exePath = Assembly.GetEntryAssembly().Location;
+                if (value is string && (string)value == exePath)
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Exception: {ex}");
+            }
+            return false;
+        }
+
+        private void ToggleAutostart()
+        {
+            try
+            {
+                bool enabled = IsAutostartEnabled();
+                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(_autostartRegKey, true);
+                if (!enabled)
+                {
+                    string exePath = Assembly.GetEntryAssembly().Location;
+                    registryKey.SetValue(_autostartName, exePath);
+                    _autostart.Checked = true;
+                }
+                else
+                {
+                    registryKey.DeleteValue(_autostartName);
+                    _autostart.Checked = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Exception: {ex}");
+            }
         }
 
         private void ExitApplication()

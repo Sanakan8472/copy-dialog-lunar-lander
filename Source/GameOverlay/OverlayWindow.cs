@@ -103,7 +103,6 @@ namespace CopyDialogLunarLander
             try
             {
                 TrackChartView();
-
             }
             catch (System.Windows.Automation.ElementNotAvailableException)
             {
@@ -130,9 +129,16 @@ namespace CopyDialogLunarLander
             // This should be equivalent to these device independent constants but not sure if that is true for all OS versions.
             // _rect = new Rect(0, 0, 395.0, 85.0);
             Init(new System.Windows.Size(_rect.Width, _rect.Height));
-             
-            TrackChartView();
-            CompositionTarget.Rendering += CompositionTarget_Rendering;
+
+            try
+            {
+                TrackChartView();
+                CompositionTarget.Rendering += CompositionTarget_Rendering;
+            }
+            catch (System.Windows.Automation.ElementNotAvailableException)
+            {
+                Sleep();
+            }
         }
 
 
@@ -179,12 +185,17 @@ namespace CopyDialogLunarLander
                 {
                     IntPtr hwndFocus = NativeInterop.GetForegroundWindow();
                     IntPtr hwndCurrent = new IntPtr((int)_trackedChartView.Current.NativeWindowHandle);
-                    if (IsActive && _activeOverlayWindow != this)
+                    var wih = new System.Windows.Interop.WindowInteropHelper(this);
+                    IntPtr hwndThis = wih.Handle;
+                    // IsActive function is unreliable for always in foreground windows so we compute it manually.
+                    bool isActive = hwndThis == hwndFocus;
+
+                    if (isActive && _activeOverlayWindow != this)
                     {
                         _activeOverlayWindow = this;
                         System.Diagnostics.Debug.WriteLine($"Active: {hwndCurrent}, parent OW: {_parentOperationStatusWindow}");
                     }
-                    else if (!IsActive && _activeOverlayWindow == this)
+                    else if (!isActive && _activeOverlayWindow == this)
                     {
                         _activeOverlayWindow = null;
                         System.Diagnostics.Debug.WriteLine($"Not Active: {hwndCurrent}, parent OW: {_parentOperationStatusWindow}");
@@ -204,7 +215,7 @@ namespace CopyDialogLunarLander
                         hwndCurrent = NativeInterop.GetParent(hwndCurrent);
                     }
 
-                    showOverlay = showOverlay || IsActive;
+                    showOverlay = showOverlay || isActive;
                 }
                 catch (Exception)
                 {
