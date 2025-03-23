@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Automation;
 
@@ -42,17 +43,8 @@ namespace CopyDialogLunarLander
 
         public void Start()
         {
-            {
-                // Find all operation windows.
-                AutomationElement root = AutomationElement.RootElement;
-
-                AutomationElementCollection elementCollection = root.FindAll(TreeScope.Children, _operationStatusWindowCondition);
-                foreach (AutomationElement elem in elementCollection)
-                {
-                    AddStatusWindow(elem);
-                }
-            }
-
+            Task.Factory.StartNew(() => FindWindows());
+     
             {
                 // Configure automation event handler.
                 _eventHandler = new AutomationEventHandler(OnWindowOpen);
@@ -79,6 +71,16 @@ namespace CopyDialogLunarLander
                 }
 
             });
+        }
+
+        private void FindWindows()
+        {
+            AutomationElement rootElement = AutomationElement.RootElement;
+            AutomationElementCollection elementCollection = rootElement.FindAll(TreeScope.Children, _operationStatusWindowCondition);
+            foreach (AutomationElement elem in elementCollection)
+            {
+                AddStatusWindow(elem);
+            }
         }
 
         private void AddStatusWindow(AutomationElement statusWindow)
