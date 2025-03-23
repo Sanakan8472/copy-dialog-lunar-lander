@@ -427,7 +427,7 @@ namespace CopyDialogLunarLander
 
         public void Input(bool left, bool right, bool down)
         {
-            if (!_state.HasFlag(GameState.Active) || _lander == null && _stats.Fuel > 0 || _stats.Dead || _stats.Success)
+            if (!_state.HasFlag(GameState.Active) || _lander == null && _stats.Fuel > 0 || _stats.Dead || _stats.Success || _stats.Fuel <= 0)
             {
                 _left = false;
                 _right = false;

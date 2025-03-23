@@ -296,6 +296,8 @@ namespace CopyDialogLunarLander
                 accu[System.Drawing.Color.Empty] = 0;
                 unsafe
                 {
+                    // Find the terrain color by searching for all color above a certain threshold of
+                    // saturation and then picking the most common one.
                     byte* pixelPtr = (byte*)pixelData.Scan0;
                     for (int x = 2; x < 6; x++)
                     {
@@ -319,11 +321,14 @@ namespace CopyDialogLunarLander
                         }
                     }
                     _terrainColor = accu.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+
+                    // Find where the terrain color stops, starting at the bottom of each column of pixels.
                     if (_terrainColor != System.Drawing.Color.Empty)
                     {
                         Parallel.For(0, (int)_rect.Width, x =>
                         {
                             heightField[x] = 0;
+                            bool terrainStarted = false;
                             int pixelPosX = (int)Math.Round(((double)x / _rect.Width) * pixelData.Width);
                             for (int y = pixelData.Height - 1; y >= 0; --y)
                             {
@@ -335,9 +340,22 @@ namespace CopyDialogLunarLander
                                 System.Drawing.Color color = System.Drawing.Color.FromArgb(r, g, b);
                                 if (color == System.Drawing.Color.FromArgb(0, 0, 0))
                                     continue;
-                                if (_terrainColor != color)
+                                if (_terrainColor == color)
                                 {
+                                    terrainStarted = true;
+                                }
+                                else if (_terrainColor != color && terrainStarted)
+                                {
+                                    // Only pick the terrain height if we actually encountered a terrain pixel.
+                                    // This is needed because on some systems there is a while line randomly at
+                                    // the bottom which would otherwise stop traversal.
                                     heightField[x] = (float)(pixelData.Height - y - 1) / pixelData.Height;
+                                    break;
+                                }
+                                else if (!terrainStarted && (pixelData.Height - y) > 5)
+                                {
+                                    // If we didn't encounter a single terrain pixel in the bottom 5 pixels of a column,
+                                    // there probably is no terrain here and we can stop searching.
                                     break;
                                 }
                             }

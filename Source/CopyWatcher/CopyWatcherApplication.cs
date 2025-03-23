@@ -194,8 +194,11 @@ namespace CopyDialogLunarLander
         {
             System.Diagnostics.Debug.WriteLine($"Progress chart opened {chartView.Current.NativeWindowHandle}");
             OverlayWindow ow = (OverlayWindow)Activator.CreateInstance(_currentGame);
-            _overlayWindows.Add(chartView, new OverlayWindowData { window = ow, chartView = chartView, parentOperationStatusWindow = parentOperationStatusWindow });
-            ow.Wake(chartView, parentOperationStatusWindow);
+            if (!_overlayWindows.ContainsKey(chartView))
+            {
+                _overlayWindows.Add(chartView, new OverlayWindowData { window = ow, chartView = chartView, parentOperationStatusWindow = parentOperationStatusWindow });
+                ow.Wake(chartView, parentOperationStatusWindow);
+            }
         }
 
         private void DestroyOverlay(AutomationElement chartView)
